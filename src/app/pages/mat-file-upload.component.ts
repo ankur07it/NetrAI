@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
     Component,
     ElementRef,
@@ -73,6 +74,8 @@ import {
     @ViewChild('fileInput') fileInputRef: ElementRef | undefined
     selectedFiles: FileList | undefined
     selectedFileText = '';
+
+    constructor(private http: HttpClient) {}
   
     filesChanged(event: any): void {
       console.log(event)
@@ -87,7 +90,20 @@ import {
   
     uploadFiles(): void {
       this.uploadClicked.emit(this.selectedFiles)
-      this.resetFileInput()
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+         "Content-Type": "multipart/form-data" 
+        })
+      };
+      
+      const formData = new FormData();
+      formData.append("blobFile", ((this.selectedFiles as any)[0] as any));
+     
+      this.http.post('https://europe-west1-hack-team-netrai.cloudfunctions.net/uploader-function-1', formData).subscribe(item => {
+        console.log(item)
+      })
+      // this.resetFileInput()
     }
   
     resetFileInput(): void {

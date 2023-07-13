@@ -1,0 +1,14 @@
+runtime: nodejs16
+
+instance_class: F2
+
+env_variables: 
+  BUCKET_NAME: "hackathon_netrai_ui"
+
+handlers:
+- url: /
+  static_files: dist/netr-ai/index.html
+  upload: dist/netr-ai/index.html
+
+- url: /
+  static_dir: dist/netr-ai
