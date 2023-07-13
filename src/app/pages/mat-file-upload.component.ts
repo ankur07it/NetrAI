@@ -71,20 +71,16 @@ import {
     @Output() selectedFilesChanged: EventEmitter<FileList> = new EventEmitter<FileList>();
   
     @ViewChild('fileInput') fileInputRef: ElementRef | undefined
-    selectedFiles: FileList | undefined;
+    selectedFiles: FileList | undefined
     selectedFileText = '';
   
     filesChanged(event: any): void {
-      this.selectedFiles = event.target.files
-      this.selectedFilesChanged.emit(this.selectedFiles)
-      if (this.selectedFiles) {
-        const numSelectedFiles = this.selectedFiles.length
-        this.selectedFileText =
-          numSelectedFiles === 1
-            ? this.selectedFiles[0].name
-            : `${numSelectedFiles} files selected`
+      console.log(event)
+      if(event && event.target && event.target.files) {
+        this.selectedFiles = event.target.files
+        this.selectedFilesChanged.emit(this.selectedFiles)
+        this.selectedFileText = (this.selectedFiles as any)[0].name     
       } else {
-        this.selectedFileText = ''
         this.resetFileInput()
       }
     }
@@ -95,6 +91,7 @@ import {
     }
   
     resetFileInput(): void {
+      this.selectedFileText = '';
       (this.fileInputRef as ElementRef).nativeElement.value = ''
     }
   }
