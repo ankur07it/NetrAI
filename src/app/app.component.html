@@ -1,0 +1,33 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  NetrAI - Generating Future AI
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <div class="menu-content">
+      <button mat-button class="menu-button">
+        <mat-icon>autorenew</mat-icon>
+        <span>New conservation</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button logo">
+        <mat-icon>help</mat-icon>
+        <span>NetrAI</span>
+      </button>
+    </div>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

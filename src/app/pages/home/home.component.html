@@ -1,0 +1,26 @@
+<div class='container'>
+    <div class='window'>
+        <header class='middle'>
+            Lets start with upload something..
+        </header>
+
+        <div class='chatBox'>
+            <div class="chat-content" ngx-auto-scroll lock-y-offset="10" observe-attributes>
+                <div class='message {{message.class}}' *ngFor='let message of messages;'>
+                    <p class="text">{{ message.value }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class='chatForm'>
+            <div class="app-padding">
+                <mat-card>
+                  <mat-file-upload [labelText]="'Select a file to upload:'" [selectButtonText]="'Choose File(s)'"
+                    [uploadButtonText]="'Submit'" [allowMultipleFiles]="true" [showUploadButton]="true"
+                   >
+                  </mat-file-upload>
+                </mat-card>
+              </div>
+        </div>
+    </div>
+</div>
